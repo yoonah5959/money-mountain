@@ -15,14 +15,17 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import heenu.moon.moneymountain.R
 import heenu.moon.moneymountain.theme.pretendard
+import heenu.moon.moneymountain.ui.extension.commaAndWithWon
 
 @Composable
 fun MainScreen(
     viewModel: MainViewModel = hiltViewModel()
 ) {
-    Scaffold(modifier = Modifier
-        .fillMaxSize()
-        .padding(24.dp)) { contentPadding ->
+    Scaffold(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(24.dp)
+    ) { contentPadding ->
         contentPadding
         TopTitle(viewModel = viewModel, contentPadding)
 
@@ -47,7 +50,7 @@ fun TopTitle(viewModel: MainViewModel, contentPadding: PaddingValues) {
         )
 
         Text(
-            text = savedMoney.toString(), //todo
+            text = savedMoney.commaAndWithWon(),
             fontSize = 32.sp,
             fontFamily = pretendard,
             fontWeight = FontWeight.Bold
@@ -61,7 +64,7 @@ fun Card(titleRes: Int, content: String) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
-            .background(color =MaterialTheme.colors.secondary)
+            .background(color = MaterialTheme.colors.secondary)
     ) {
         Text(
             text = stringResource(id = titleRes),
