@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.sp
 import heenu.moon.moneymountain.R
 
 
-val Pretendard = FontFamily(
+val pretendard = FontFamily(
     Font(R.font.pretendard_bold, FontWeight.Bold),
     Font(R.font.pretendard_semibold, FontWeight.SemiBold),
     Font(R.font.pretendard_medium, FontWeight.Medium),
@@ -18,42 +18,42 @@ val Pretendard = FontFamily(
 )
 
 val Head1 = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.Bold,
     fontSize = 96.sp,
     letterSpacing = (-1.5).sp
 )
 
 val Head2 = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.Bold,
     fontSize = 60.sp,
     letterSpacing = (-0.5).sp
 )
 
 val Head3 = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.Bold,
     fontSize = 48.sp,
     letterSpacing = 0.sp
 )
 
 val Head4 = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.Bold,
     fontSize = 34.sp,
     letterSpacing = 0.25.sp
 )
 
 val Head5 = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.Bold,
     fontSize = 24.sp,
     letterSpacing = 0.sp
 )
 
 val Head6 = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.Bold,
     fontSize = 20.sp,
     letterSpacing = 0.15.sp
@@ -61,7 +61,7 @@ val Head6 = TextStyle(
 
 /** main semi bold content style*/
 val SubTitle1 = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.SemiBold,
     fontSize = 18.sp,
     letterSpacing = 0.15.sp
@@ -69,7 +69,7 @@ val SubTitle1 = TextStyle(
 
 
 val SubTitle2 = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.SemiBold,
     fontSize = 24.sp,
     lineHeight = 33.6.sp,
@@ -77,7 +77,7 @@ val SubTitle2 = TextStyle(
 
 /** main content text style  */
 val Body1 = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.Normal,
     fontSize = 16.sp,
     letterSpacing = 0.5.sp
@@ -85,28 +85,28 @@ val Body1 = TextStyle(
 
 
 val Body2 = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.Normal,
     fontSize = 14.sp,
     letterSpacing = 0.25.sp
 )
 
 val Button = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.Medium,
     fontSize = 14.sp,
     letterSpacing = 1.25.sp
 )
 
 val Caption = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.Normal,
     fontSize = 12.sp,
     letterSpacing = 0.4.sp
 )
 
 val OverLine = TextStyle(
-    fontFamily = Pretendard,
+    fontFamily = pretendard,
     fontWeight = FontWeight.Normal,
     fontSize = 10.sp,
     letterSpacing = 1.5.sp

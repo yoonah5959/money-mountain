@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">moneyMountain</string>
+    <string name="totalSavedMoney">총 모은 돈</string>
+    <string name="priceWithWon">$s원</string>
+    <string name="noExpenditureDay">무지출 데이</string>
+    <string name="remainingLivingExpenses">이번달 남은 생활비</string>
+    <string name="todayExpenditure">오늘의 소비</string>
+    <string name="thisWeeksExpenditure">이번주에 쓴 돈</string>
+
 </resources>
