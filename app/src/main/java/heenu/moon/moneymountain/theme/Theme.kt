@@ -10,8 +10,8 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 private val DarkColorPalette = darkColors(
     primary = Yellow300,
     onPrimary = White,
-    secondary = Gray5,
-    onSecondary = Gray7,
+    secondary = Gray8,
+    onSecondary = Gray3,
     surface = Gray9,
     onSurface = White,
     background = Gray9,

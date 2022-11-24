@@ -2,12 +2,18 @@ package heenu.moon.moneymountain.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -27,17 +33,23 @@ fun MainScreen(
             .padding(24.dp)
     ) { contentPadding ->
         contentPadding
-        TopTitle(viewModel = viewModel, contentPadding)
 
-//        val list = viewModel.contentList
+        Column() {
+            TopTitle(viewModel = viewModel, contentPadding)
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(8.dp)
+            )
+            CardListContainer(viewModel)
+        }
+
     }
 }
 
 @Composable
 fun TopTitle(viewModel: MainViewModel, contentPadding: PaddingValues) {
-
     val savedMoney = viewModel.savedMoney.collectAsState().value
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -59,25 +71,48 @@ fun TopTitle(viewModel: MainViewModel, contentPadding: PaddingValues) {
 }
 
 @Composable
+fun CardListContainer(viewModel: MainViewModel) {
+    viewModel.basicCardList.observeAsState().value?.let { basicCardList ->
+        for ((home, number) in basicCardList) {
+            Card(titleRes = home.res, content = number.commaAndWithWon())
+        }
+    }
+    viewModel.thisWeeksCard.observeAsState().value?.let { thisWeeksCard ->
+        // todo
+    }
+
+
+}
+
+@Composable
 fun Card(titleRes: Int, content: String) {
-    Column(
+    Surface(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(12.dp)
-            .background(color = MaterialTheme.colors.secondary)
-    ) {
-        Text(
-            text = stringResource(id = titleRes),
-            fontSize = 18.sp,
-            fontFamily = pretendard,
-            fontWeight = FontWeight.Bold,
-        )
+            .padding(top = 24.dp)
+            .clip(RoundedCornerShape(12.dp, 12.dp, 12.dp, 12.dp)),
 
-        Text(
-            text = content,
-            fontSize = 24.sp,
-            fontFamily = pretendard,
-            fontWeight = FontWeight.Normal
-        )
+        color = MaterialTheme.colors.secondary
+    ) {
+        Column(
+            modifier = Modifier.padding(top =12.dp, start = 12.dp, end = 12.dp, bottom = 16.dp)
+        ) {
+            Text(
+                text = stringResource(id = titleRes),
+                fontSize = 18.sp,
+                fontFamily = pretendard,
+                fontWeight = FontWeight.Bold,
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                modifier = Modifier.padding(start = 8.dp),
+                text = content,
+                fontSize = 24.sp,
+                fontFamily = pretendard,
+                fontWeight = FontWeight.Normal
+            )
+        }
     }
+
 }
