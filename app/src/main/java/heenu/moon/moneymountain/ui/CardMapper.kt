@@ -1,7 +1,5 @@
 package heenu.moon.moneymountain.ui
 
-import heenu.moon.moneymountain.ui.extension.BasicCardWithList
-
 
 object CardMapper {
     fun toBasicCardList(userData: UserData): MutableList<Pair<Home, Long>> {
@@ -14,11 +12,11 @@ object CardMapper {
         return list
     }
 
-    fun toThisWeeksCard(userData: UserData): BasicCardWithList {
-        return BasicCardWithList(
-            home = Home.ThisWeeksExpenditure,
-            content = userData.thisWeeksExpenditure,
-            list = userData.thisWeeksExpenditureList
+    fun toThisWeeksCard(thisWeeksList: List<WeeksData>): WeeksCardData {
+        return WeeksCardData(
+            titleType = Home.ThisWeeksExpenditure,
+            totalPrice = thisWeeksList.sumOf { it.price },
+            priceList = thisWeeksList
         )
     }
 }

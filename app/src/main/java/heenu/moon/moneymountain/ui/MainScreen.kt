@@ -1,7 +1,8 @@
 package heenu.moon.moneymountain.ui
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
@@ -12,8 +13,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.modifier.modifierLocalOf
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -74,18 +73,21 @@ fun TopTitle(viewModel: MainViewModel, contentPadding: PaddingValues) {
 fun CardListContainer(viewModel: MainViewModel) {
     viewModel.basicCardList.observeAsState().value?.let { basicCardList ->
         for ((home, number) in basicCardList) {
-            Card(titleRes = home.res, content = number.commaAndWithWon())
+            BasicCard(titleRes = home.res, subTitle = number.commaAndWithWon())
         }
     }
     viewModel.thisWeeksCard.observeAsState().value?.let { thisWeeksCard ->
-        // todo
+        BasicCardWithList(
+            titleRes = Home.ThisWeeksExpenditure.res,
+            subTitle = thisWeeksCard.totalPrice.commaAndWithWon(),
+            list = thisWeeksCard.priceList
+        )
     }
-
 
 }
 
 @Composable
-fun Card(titleRes: Int, content: String) {
+fun BasicCard(titleRes: Int, subTitle: String) {
     Surface(
         modifier = Modifier
             .fillMaxWidth()
@@ -95,7 +97,7 @@ fun Card(titleRes: Int, content: String) {
         color = MaterialTheme.colors.secondary
     ) {
         Column(
-            modifier = Modifier.padding(top =12.dp, start = 12.dp, end = 12.dp, bottom = 16.dp)
+            modifier = Modifier.padding(top = 12.dp, start = 12.dp, end = 12.dp, bottom = 16.dp)
         ) {
             Text(
                 text = stringResource(id = titleRes),
@@ -107,11 +109,54 @@ fun Card(titleRes: Int, content: String) {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 modifier = Modifier.padding(start = 8.dp),
-                text = content,
+                text = subTitle,
                 fontSize = 24.sp,
                 fontFamily = pretendard,
                 fontWeight = FontWeight.Normal
             )
+        }
+    }
+}
+
+
+@Composable
+fun BasicCardWithList(titleRes: Int, subTitle: String, list: List<WeeksData>) {
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 24.dp)
+            .clip(RoundedCornerShape(12.dp, 12.dp, 12.dp, 12.dp)),
+
+        color = MaterialTheme.colors.secondary
+    ) {
+        Column(
+            modifier = Modifier.padding(top = 12.dp, start = 12.dp, end = 12.dp, bottom = 16.dp)
+        ) {
+            Text(
+                text = stringResource(id = titleRes),
+                fontSize = 18.sp,
+                fontFamily = pretendard,
+                fontWeight = FontWeight.Bold,
+            )
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                modifier = Modifier.padding(start = 8.dp),
+                text = subTitle,
+                fontSize = 24.sp,
+                fontFamily = pretendard,
+                fontWeight = FontWeight.Normal
+            )
+
+            Spacer(modifier = Modifier.height(12.dp))
+            LazyRow(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                itemsIndexed(items = list) { _, item ->
+                    Column(modifier = Modifier.weight(1f)) { // todo
+                        Text(text = item.date)
+                        Text(text = item.price.commaAndWithWon())
+                    }
+                }
+            }
         }
     }
 
